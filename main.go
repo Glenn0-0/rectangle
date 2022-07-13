@@ -32,7 +32,7 @@ func switchOptions(rec1 rectangle) {
 
 	case 2:
 		var n int
-		fmt.Print("Enter a number by which to enlarge by: ")
+		fmt.Print("\nEnter a number by which to enlarge by: ")
 		fmt.Scanln(&n)
 		rec1.enlargeBy(n)
 
@@ -44,14 +44,14 @@ func switchOptions(rec1 rectangle) {
 	case 4:
 		var a int
 		var sq1 square
-		fmt.Print("Enter side of the square: ")
+		fmt.Print("\nEnter side of the square: ")
 		fmt.Scanln(&a)
 		sq1 = square.createSq(sq1, a)
 		fmt.Println(rec1.hasSquares(sq1))
 
 	case 5:
 		var n, m int
-		fmt.Print("Enter base of the rectangle: ")
+		fmt.Print("\nEnter base of the rectangle: ")
 		fmt.Scanln(&n)
 
 		fmt.Print("Enter side of the rectangle: ")
@@ -59,7 +59,19 @@ func switchOptions(rec1 rectangle) {
 		rec1 = rec1.createRec(n, m)
 
 	case 6:
-		fmt.Println("Thank you for your time. Program exited.")
+		fmt.Println("\nNow, please, enter another rectangle's dimensions to compare with")
+
+		var n, m int
+		fmt.Print("Enter base of a new rectangle: ")
+		fmt.Scanln(&n)
+
+		fmt.Print("Enter side of a new rectangle: ")
+		fmt.Scanln(&m)
+
+		rec1.compareArea(n, m)
+
+	case 7:
+		fmt.Println("\nThank you for your time. Program exited.")
 		os.Exit(0)
 		
 	}
@@ -70,13 +82,13 @@ func switchOptions(rec1 rectangle) {
 func chooseOption(rec1 rectangle) (int) {
 	var option int
 
-	fmt.Println("\nChoose an operation:\n1 - Get rectangle's area\n2 - Enlarge the rectangle\n3 - Print the rectangle\n4 - Count the number of squares in the rectangle\n5 - Create new rectangle\n6 - Exit program")
+	fmt.Println("\nChoose an operation:\n1 - Get rectangle's area\n2 - Enlarge the rectangle\n3 - Print the rectangle\n4 - Count the number of squares in the rectangle\n5 - Create new rectangle\n6 - Compare rectangle's area\n7 - Exit program")
 	
 	fmt.Print("Enter number: ")
 	fmt.Scanln(&option)
 
-	if option < 1 || option > 6 {
-		fmt.Println(fmt.Errorf("for the rectangle %v: validation failed: invalid option value: expected %v to equal 1, 2, 3, 4 or 5", rec1, option))
+	if option < 1 || option > 7 {
+		fmt.Println(fmt.Errorf("for the rectangle %v: validation failed: invalid option value: expected %v to equal 1, 2, 3, 4, 5, 6 or 7", rec1, option))
 		chooseOption(rec1)
 	}
 
@@ -84,7 +96,7 @@ func chooseOption(rec1 rectangle) (int) {
 }
 
 func determineWay() int {
-	fmt.Println("Which way would you like to print th rectangle?\n0 - vertically\n1 - horizontally")
+	fmt.Println("\nWhich way would you like to print th rectangle?\n0 - vertically\n1 - horizontally")
 
 	var way int
 	fmt.Print("Enter option:")

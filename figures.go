@@ -13,6 +13,7 @@ type square struct {
 
 type recGetter interface {
 	getArea() int
+	compareArea(int, int)
 	enlargeBy(int)
 	recPrint()
 	hasSquares(square) int
@@ -23,12 +24,23 @@ func (rec rectangle) getArea() int {
 	return rec.base * rec.side
 }
 
+func (rec rectangle) compareArea(a, b int) {
+	if rec.getArea() > a*b {
+		fmt.Println("\nEntered rectangle is smaller!")
+	} else if rec.getArea() == a*b {
+		fmt.Println("\nRectangles areas are equal!")
+	} else {
+		fmt.Println("\nEntered rectangle is bigger!")
+	}
+}
+
 func (rec *rectangle) enlargeBy(n int) {
 	rec.base *= n
 	rec.side *= n
 }
 
 func (rec rectangle) recPrint(way int) {
+	fmt.Print("\n")
 	if (way == 1 && rec.side > rec.base) || (way == 0 && rec.side < rec.base) {
 		temp := rec.side
 		rec.side = rec.base
